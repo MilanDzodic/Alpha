@@ -351,6 +351,10 @@ header {
     grid-template-areas: "check info location phone date status actions";
     grid-template-columns: auto 3fr 3fr 2fr 2fr 2fr 50px;
   }
+
+  .client-list .client-actions .ellipsis {
+    cursor: pointer;
+  }
   
   .client-list .client-info {
     display: grid;
@@ -456,7 +460,7 @@ form {
     font-size: 0.9em;
   }
 
-  form .input-validation {
+  form .input-validation-error {
     border-color: var(--error-border);
   }
 
@@ -528,7 +532,7 @@ iput[type="checkbox"] {
   }
 
 .modalz {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   background-color: var(--modal-screen-background);
@@ -557,6 +561,14 @@ iput[type="checkbox"] {
 
 }
 
+#addMemberModal .modalz-content {
+  width: 550px;
+}
+
+#editMemberModal .modalz-content {
+  width: 550px;
+}
+
 #projects {
 
 }
@@ -569,10 +581,6 @@ iput[type="checkbox"] {
 
 #addClientModal .modalz-content {
   width: 550px;
-}
-
-#editClientModal {
-  display: none;
 }
 
 #editClientModal .modalz-content {

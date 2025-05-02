@@ -17,13 +17,4 @@ public class AdminController : Controller
   {
     return View();
   }
-
-  [HttpPost]
-  public IActionResult AddClient(AddClientForm form)
-  {
-    if (!ModelState.IsValid)
-      return RedirectToAction("Clients");
-
-    return View();
-  }
 }
