@@ -1,0 +1,58 @@
+﻿@model MemberSignUpForm
+@{
+  Layout = "_CleanLayout";
+  ViewData["Title"] = "Create Account";
+}
+
+<section id="signup">
+  <form asp-controller="Auth" asp-action="SignUp" method="post" novalidate enctype="multipart/form-data">
+
+    <h1 class="h1z">@ViewData["Title"]</h1>
+
+    <div class="form-group">
+      <label asp-for="FirstName"></label>
+      <input asp-for="FirstName" />
+      <span asp-validation-for="FirstName"></span>
+    </div>
+
+    <div class="form-group">
+      <label asp-for="LastName"></label>
+      <input asp-for="LastName" />
+      <span asp-validation-for="LastName"></span>
+    </div>
+
+    <div class="form-group">
+      <label asp-for="Email"></label>
+      <input asp-for="Email" />
+      <span asp-validation-for="Email"></span>
+    </div>
+
+    <div class="form-group">
+      <label asp-for="Phone"></label>
+      <input asp-for="Phone" />
+      <span asp-validation-for="Phone"></span>
+    </div>
+
+    <div class="form-group">
+      <label asp-for="Password"></label>
+      <input asp-for="Password" />
+      <span asp-validation-for="Password"></span>
+    </div>
+
+    <div class="form-group">
+      <label asp-for="ConfirmPassword"></label>
+      <input asp-for="ConfirmPassword" />
+      <span asp-validation-for="ConfirmPassword"></span>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-blue">Create Account</button>
+    </div>
+
+    <div class="form-footer">
+      <span>Already have an account?</span>
+      <a class="form-footer-a" asp-controller="Auth" asp-action="Login">Log in</a>
+    </div>
+  </form>
+
+</section>

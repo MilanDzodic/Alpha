@@ -1,8 +1,11 @@
-﻿@{
+﻿@model IEnumerable<Member>
+
+@{
   ViewData["Title"] = "Team Members";
 }
 
 <partial name="Partials/Sections/_AddMemberForm" />
+<partial name="Partials/Sections/_EditMemberForm" />
 
 <section id="team-members">
   <header>
@@ -10,10 +13,25 @@
       @ViewData["Title"]
     </h2>
     <button type="button" data-modal="true" data-target="#addMemberModal" class="btn btn-blue btn-add" ">
-      <i class="bi bi-plus-lg"></i>
-      Add Member
+    <i class="bi bi-plus-lg"></i>
+    Add Member
     </button>
-  </header>
+    </header>
+
+    <div class="members-list">
+
+      @if (Model != null)
+      {
+        @foreach (var member in Model)
+        {
+          <div>
+            <div>@member.FirstName @member.LastName</div>
+          </div>
+        }
+      }
+
+  </div>
+
 </section>
 
 

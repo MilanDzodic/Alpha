@@ -297,6 +297,16 @@ h6 {
   margin-top: 2rem;
 }
 
+.btn-logoutz {
+  display: flex;
+  width: 129px;
+}
+
+.btn-logoutz::before {
+  content: '\f2f5';
+  font-family: var(--font-fa);
+}
+
 .alpha-logotype {
   font-size: 26px;
   font-weight: var(--bold);
@@ -420,6 +430,10 @@ table {
     background-color: var(--table-tbody-tr-background-hover);
   }
 
+.h1z {
+  margin-bottom: 2rem;
+}
+
 form {
   width: 100%;
 }
@@ -479,6 +493,24 @@ form {
     align-items: center;
     gap: 0.5rem;
   }
+
+.form-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 2rem;
+}
+
+  .form-footer .form-footer-a {
+    text-decoration: none;
+  }
+
+  .form-footer .form-footer-a:hover {
+    text-decoration: underline;
+    color: var(--blue-accent)
+  }
+
 
 iput[type="checkbox"] {
   height: 15px;
@@ -585,4 +617,12 @@ iput[type="checkbox"] {
 
 #editClientModal .modalz-content {
   width: 550px;
+}
+
+#login {
+  width: 440px;
+}
+
+#signup {
+  width: 440px;
 }

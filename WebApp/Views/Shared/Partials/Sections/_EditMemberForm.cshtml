@@ -1,16 +1,17 @@
-﻿@model AddMemberForm
+﻿@model EditMemberForm
 
-<div id="addMemberModal" class="modalz">
+<div id="editMemberModal" class="modalz">
   <div class="modalz-content">
 
     <div class="modalz-header">
-      <h3>Add Team Member</h3>
+      <h3>Edit Team Member</h3>
       <button class="btn-closedz" data-close="true">
         <i class="fa-solid fa-xmark"></i>
       </button>
     </div>
 
-    <form class=".formzz" novalidate method="post" asp-action="AddMember" asp-controller="Members">
+    <form class=".formzz" novalidate method="post" asp-action="MemberClient" asp-controller="Members">
+      <input asp-for="Id" readonly type="hidden" />
 
       <div class="image-previewer circle">
         <img src="" class="image-preview" />
