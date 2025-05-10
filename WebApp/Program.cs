@@ -1,6 +1,7 @@
 using Business.Services;
 using Data.Contexts;
 using Data.Entities;
+using Data.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,8 +9,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("AlphaDB")));
+
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IMemberService, MemberService>();
+
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+builder.Services.AddScoped<IMemberRepository, MemberRepository>();
+builder.Services.AddScoped<IStatusRepository, StatusRepository>();
 
 
 builder.Services.AddIdentity<MemberEntity, IdentityRole>(options =>
@@ -26,6 +33,8 @@ builder.Services.ConfigureApplicationCookie(options =>
   options.AccessDeniedPath = "/auth/denied";
   options.SlidingExpiration = true;
 });
+
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
 
 builder.Services.AddControllersWithViews();
 
