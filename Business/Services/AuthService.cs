@@ -1,5 +1,5 @@
-﻿using Data.Entities;
-using Domain.Models;
+﻿using Business.Models;
+using Data.Entities;
 using Microsoft.AspNetCore.Identity;
 
 namespace Business.Services;
