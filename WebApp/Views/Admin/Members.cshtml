@@ -4,8 +4,8 @@
   ViewData["Title"] = "Team Members";
 }
 
-<partial name="Partials/Sections/_AddMemberForm" />
-<partial name="Partials/Sections/_EditMemberForm" />
+@* <partial name="Partials/Sections/_AddMemberForm" /> *@
+@* <partial name="Partials/Sections/_EditMemberForm" /> *@
 
 <section id="team-members">
   <header>
@@ -24,8 +24,12 @@
       {
         @foreach (var member in Model)
         {
-          <div>
-            <div>@member.FirstName @member.LastName</div>
+          <div class="card member">
+            <h4 class="name">@member.FirstName @member.LastName</h4>
+            <div class="jobtitle">@member.JobTitle CEO</div>
+            <div class="email">@member.Email</div>
+            <div class="phone">@member.Phone 12345</div>
+            <div class="role"></div>
           </div>
         }
       }

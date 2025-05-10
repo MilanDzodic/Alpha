@@ -77,9 +77,12 @@
   --table-tbody-tr-background-hover: var(--blue-accent-10);
   --modal-screen-background: var(--dark-100-a);
   --modal-background: var(--white-100);
-  --error-background: var(--red-light);
   --error-text: var(--red-dark);
+  --error-background: var(--red-light);
   --error-border: var(--red-semilight);
+  --card-text: var(--text);
+  --card-background: var(--white-100);
+  --card-border: var(--white-100);
 }
 
 [data-theme="dark"] {
@@ -589,16 +592,50 @@ iput[type="checkbox"] {
       margin-bottom: 2rem;
     }
 
-#team-members {
-
-}
-
 #addMemberModal .modalz-content {
   width: 550px;
 }
 
 #editMemberModal .modalz-content {
   width: 550px;
+}
+
+#team-members {
+  display: grid;
+  gap: 0rem;
+}
+
+.members-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+}
+
+.member {
+  text-align: center;
+  display: grid;
+  gap: 0.8rem;
+}
+
+  .member .name { 
+    margin-top: 0.8rem;
+  }
+
+  .member .jobtitle {
+    background-color: var(--white-400);
+    display: inline;
+    padding: 0.2rem 0.5rem;
+    margin: 0.5rem auto 2rem;
+    width: 33%;
+  }
+
+.card {
+  color: var(--card-text);
+  border: 1px solid var(--card-border);
+  background-color: var(--card-background);
+  box-shadow: 0 4px 4px 3px rgba(196, 196, 196, 0.1);
+  padding: 2rem;
+  border-radius: 16px;
 }
 
 #projects {

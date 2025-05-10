@@ -11,7 +11,7 @@ public class AdminController(IMemberService memberService) : Controller
 {
   private readonly IMemberService _memberService = memberService;
 
-  [Authorize(Roles = "admin")]
+  //[Authorize(Roles = "admin")]
   [Route("members")]
   public async Task<IActionResult> Members()
   {
@@ -20,7 +20,7 @@ public class AdminController(IMemberService memberService) : Controller
     return View(members);
   }
 
-  [Authorize(Roles = "admin")]
+  //[Authorize(Roles = "admin")]
   [Route("clients")]
   public IActionResult Clients()
   {
