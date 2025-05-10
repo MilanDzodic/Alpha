@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.Data.SqlClient;
 
 namespace Data.Entities;
 
@@ -34,14 +33,14 @@ public class ProjectEntity
   public virtual ClientEntity Client { get; set; } = null!;
 
 
-  [ForeignKey(nameof(User))]
-  public string UserId { get; set; } = null!;
+  [ForeignKey(nameof(Member))]
+  public string MemberId { get; set; } = null!;
 
-  public virtual UserEntity User { get; set; } = null!;
+  public virtual MemberEntity Member{ get; set; } = null!;
 
 
   [ForeignKey(nameof(Status))]
-  public int StatusId { get; set; }
+  public string StatusId { get; set; } = null!;
 
   public virtual StatusEntity Status { get; set; } = null!;
 }

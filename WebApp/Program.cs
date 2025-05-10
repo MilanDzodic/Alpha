@@ -14,7 +14,6 @@ builder.Services.AddScoped<IMemberService, MemberService>();
 
 builder.Services.AddIdentity<MemberEntity, IdentityRole>(options =>
   {
-    options.SignIn.RequireConfirmedAccount = false;
     options.User.RequireUniqueEmail = true;
     options.Password.RequiredLength = 8;
   })
@@ -24,6 +23,7 @@ builder.Services.AddIdentity<MemberEntity, IdentityRole>(options =>
 builder.Services.ConfigureApplicationCookie(options =>
 {
   options.LoginPath = "/auth/login";
+  options.AccessDeniedPath = "/auth/denied";
   options.SlidingExpiration = true;
 });
 
@@ -33,6 +33,7 @@ var app = builder.Build();
 app.UseHsts();
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapStaticAssets();
 app.MapControllerRoute(
