@@ -68,8 +68,6 @@ public abstract class BaseRepository<TEntity, TModel> : IBaseRepository<TEntity,
     return new RepositoryResult<IEnumerable<TModel>> { Succeeded = true, StatusCode = 201, Result = result };
   }
 
-
-
   public virtual async Task<RepositoryResult<IEnumerable<TSelect>>> GetAllAsync<TSelect>(Expression<Func<TEntity, TSelect>> selector, bool orderByDescending = false, Expression<Func<TEntity, object>>? sortBy = null, Expression<Func<TEntity, bool>>? where = null, params Expression<Func<TEntity, object>>[] includes)
   {
     IQueryable<TEntity> query = _table;
@@ -91,8 +89,6 @@ public abstract class BaseRepository<TEntity, TModel> : IBaseRepository<TEntity,
     return new RepositoryResult<IEnumerable<TSelect>> { Succeeded = true, StatusCode = 201, Result = result };
   }
 
-
-
   public virtual async Task<RepositoryResult<TModel>> GetAsync(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] includes)
   {
     IQueryable<TEntity> query = _table;
@@ -109,8 +105,6 @@ public abstract class BaseRepository<TEntity, TModel> : IBaseRepository<TEntity,
     return new RepositoryResult<TModel> { Succeeded = true, StatusCode = 200, Result = result };
   }
 
-
-
   public virtual async Task<RepositoryResult<bool>> ExistsAsync(Expression<Func<TEntity, bool>> findBy)
   {
     var exists = await _table.AnyAsync(findBy);
@@ -118,7 +112,6 @@ public abstract class BaseRepository<TEntity, TModel> : IBaseRepository<TEntity,
         ? new RepositoryResult<bool> { Succeeded = false, StatusCode = 404, Error = "Entity not found." }
         : new RepositoryResult<bool> { Succeeded = true, StatusCode = 200 };
   }
-
 
   public virtual async Task<RepositoryResult<bool>> UpdateAsync(TEntity entity)
   {
@@ -137,7 +130,6 @@ public abstract class BaseRepository<TEntity, TModel> : IBaseRepository<TEntity,
       return new RepositoryResult<bool> { Succeeded = false, StatusCode = 500, Error = ex.Message };
     }
   }
-
 
   public virtual async Task<RepositoryResult<bool>> DeleteAsync(TEntity entity)
   {

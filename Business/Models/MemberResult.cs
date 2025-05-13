@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.Models;
 
 namespace Business.Models
 {
-  internal class MemberResult
+  public class MemberResult : ServiceResult
   {
+    public IEnumerable<Member>? Result { get; set; }
   }
 }

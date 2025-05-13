@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.Models;
 
-namespace Business.Models
+namespace Business.Models;
+
+public class ClientResult : ServiceResult
 {
-  internal class ClientResult
-  {
-  }
+  public IEnumerable<Client>? Result { get; set; }
 }

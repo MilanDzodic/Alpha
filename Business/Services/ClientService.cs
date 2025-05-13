@@ -1,12 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Business.Models;
+using Data.Repositories;
+using Domain.Extensions;
 
-namespace Business.Services
+namespace Business.Services;
+
+public interface IClientService
 {
-  internal class ClientService
+  Task<ClientResult> GetClientsAsync();
+}
+
+public class ClientService(IClientRepository clientRepository) : IClientService
+{
+  private IClientRepository _clientRepository = clientRepository;
+
+  public async Task<ClientResult> GetClientsAsync()
   {
+    var result = await _clientRepository.GetAllAsync();
+    return result.MapTo<ClientResult>();
   }
 }
