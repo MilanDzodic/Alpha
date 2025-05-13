@@ -1,35 +1,41 @@
 ﻿using Business.Models;
 using Data.Repositories;
-using Domain.Extensions;
+using Domain.Models;
 
 namespace Business.Services;
 
 public interface IStatusService
 {
-  Task<StatusResult> GetStatusByIdAsync(int id);
-  Task<StatusResult> GetStatusByNameAsync(string statusName);
-  Task<StatusResult> GetStatusesAsync();
+  Task<StatusResult<Status>> GetStatusByIdAsync(int id);
+  Task<StatusResult<Status>> GetStatusByNameAsync(string statusName);
+  Task<StatusResult<IEnumerable<Status>>> GetStatusesAsync();
 }
 
-public class StatusService(IStatusRepository statusRepository) : IStatusService
+public class StatusService(IStatusRepository statusRepository) : IStatusService, IStatusService
 {
   private readonly IStatusRepository _statusRepository = statusRepository;
 
-  public async Task<StatusResult> GetStatusesAsync()
+  public async Task<StatusResult<IEnumerable<Status>>> GetStatusesAsync()
   {
     var result = await _statusRepository.GetAllAsync();
-    return result.MapTo<StatusResult>();
-  }
-  
-  public async Task<StatusResult> GetStatusByNameAsync(string statusName)
-  {
-    var result = await _statusRepository.GetAsync(x => x.StatusName == statusName); 
-    return result.MapTo<StatusResult>();
+    return result.Succeeded
+      ? new StatusResult<IEnumerable<Status>> { Succeeded = true, StatusCode = 200, Result = result.Result }
+      : new StatusResult<IEnumerable<Status>> { Succeeded = false, StatusCode = result.StatusCode, Error = result.Error };
   }
 
-  public async Task<StatusResult> GetStatusByIdAsync(int id)
+  public async Task<StatusResult<Status>> GetStatusByNameAsync(string statusName)
+  {
+    var result = await _statusRepository.GetAsync(x => x.StatusName == statusName);
+    return result.Succeeded
+  ? new StatusResult<Status> { Succeeded = true, StatusCode = 200, Result = result.Result }
+  : new StatusResult<Status> { Succeeded = false, StatusCode = result.StatusCode, Error = result.Error };
+  }
+
+  public async Task<StatusResult<Status>> GetStatusByIdAsync(string id)
   {
     var result = await _statusRepository.GetAsync(x => x.Id == id);
-    return result.MapTo<StatusResult>();
+    return result.Succeeded
+  ? new StatusResult<Status> { Succeeded = true, StatusCode = 200, Result = result.Result }
+  : new StatusResult<Status> { Succeeded = false, StatusCode = result.StatusCode, Error = result.Error };
   }
 }

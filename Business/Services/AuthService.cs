@@ -16,10 +16,13 @@ public class AuthService(SignInManager<MemberEntity> signInManager, UserManager<
   private readonly SignInManager<MemberEntity> _signInManager = signInManager;
   private readonly UserManager<MemberEntity> _userManager = userManager;
 
-  public async Task<bool> LoginAsync(MemberLoginForm loginForm)
+  public async Task<SignInResult> LoginAsync(MemberLoginForm loginForm)
   {
-    var result = await _signInManager.PasswordSignInAsync(loginForm.Email, loginForm.Password, false, false);
-    return result.Succeeded;
+    if (loginForm == null)
+      return new SignInResult();
+
+    var result = await _signInManager.PasswordSignInAsync(loginForm.Email, loginForm.Password, loginForm.IsPersistent, false);
+    return result;
   }
 
   public async Task<bool> SignUpAsync(MemberSignUpForm signupForm)
