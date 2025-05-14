@@ -1,6 +1,4 @@
-﻿using Domain.Models;
-
-namespace Business.Models;
+﻿namespace Business.Models;
 
 public class StatusResult<T> : ServiceResult
 {

@@ -10,7 +10,7 @@ namespace Business.Services;
 public interface IMemberService
 {
   Task<MemberResult> AddMemberToRole(string memberId, string roleName);
-  Task<MemberResult> CreateUserAsync(MemberSignUpForm form, string roleName = "Member");
+  Task<MemberResult> CreateMemberAsync(MemberSignUpForm form, string roleName = "Member");
   Task<MemberResult> GetMembersAsync();
 }
 
@@ -42,7 +42,7 @@ public class MemberService(IMemberRepository memberRepository, UserManager<Membe
       : new MemberResult { Succeeded = false, StatusCode = 500, Error = "Unable to add user to role." };
   }
 
-  public async Task<MemberResult> CreateUserAsync(MemberSignUpForm form, string roleName = "Member")
+  public async Task<MemberResult> CreateMemberAsync(MemberSignUpForm form, string roleName = "Member")
   {
     if (form == null)
       return new MemberResult { Succeeded = false, StatusCode = 400, Error = "Form data cant be null" };
