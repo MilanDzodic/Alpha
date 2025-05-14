@@ -30,9 +30,12 @@ public class MemberSignUpForm
   //[RegularExpression] (@"", ErrorMessage: "Invalid Password")]
   public string Password { get; set; } = null!;
 
-  [Compare(nameof(Password), ErrorMessage = "Passwords don't match!")]
+  [Required(ErrorMessage = "Required")]
   [DataType(DataType.Password)]
   [Display(Name = "Confirm Password", Prompt = "Enter password")]
-  //[RegularExpression] (@"", ErrorMessage: "Invalid Password")]
+  [Compare(nameof(Password), ErrorMessage = "Passwords don't match!")]
   public string ConfirmPassword { get; set; } = null!;
+
+  [Range(typeof(bool), "true", "true")]
+  public bool TermsAndConditions { get; set; }
 }

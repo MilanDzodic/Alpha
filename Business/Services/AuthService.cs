@@ -6,9 +6,14 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Business.Services;
 
+public interface IAuthService
+{
+  Task<AuthResult> LoginAsync(MemberLoginForm loginForm);
+  Task LogoutAsync();
+  Task<AuthResult> SignUpAsync(MemberSignUpForm signupForm);
+}
 
-
-public class AuthService(SignInManager<MemberEntity> signInManager, IMemberService memberService) : IAuthService
+public class AuthService(SignInManager<MemberEntity> signInManager, IMemberService memberService) : IAuthService, IAuthService
 {
   private readonly SignInManager<MemberEntity> _signInManager = signInManager;
   private readonly IMemberService _memberService = memberService;
@@ -28,7 +33,7 @@ public class AuthService(SignInManager<MemberEntity> signInManager, IMemberServi
   {
     if (signupForm == null)
       return new AuthResult { Succeeded = false, StatusCode = 400, Error = "Not all required fields are supplied." };
-    
+
     var result = await _memberService.CreateMemberAsync(signupForm);
     return result.Succeeded
       ? new AuthResult() { Succeeded = true, StatusCode = 201 }

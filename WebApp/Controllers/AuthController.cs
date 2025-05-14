@@ -1,5 +1,6 @@
 ﻿using Business.Models;
 using Business.Services;
+using Domain.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Controllers;
@@ -19,17 +20,9 @@ public class AuthController(IAuthService authService) : Controller
     if (ModelState.IsValid)
     {
       var result = await _authService.LoginAsync(form);
-      if (result)
+      if (result.Succeeded)
         return RedirectToAction("Projects", "Projects");
     }
-
-    //var errors = ModelState
-    //.Where(x => x.Value?.Errors.Count > 0)
-    //.ToDictionary(
-    //  kvp => kvp.Key,
-    //  kvp => kvp.Value?.Errors.Select(x => x.ErrorMessage));
-
-    //return BadRequest(new { success = false, errors });
 
     return View(form);
   }
@@ -45,17 +38,9 @@ public class AuthController(IAuthService authService) : Controller
     if (ModelState.IsValid)
     {
       var result = await _authService.SignUpAsync(form);
-      if (result)
+      if (result.Succeeded)
         return RedirectToAction("Login", "Auth");
     }
-
-    //var errors = ModelState
-    //.Where(x => x.Value?.Errors.Count > 0)
-    //.ToDictionary(
-    //kvp => kvp.Key,
-    //kvp => kvp.Value?.Errors.Select(x => x.ErrorMessage));
-
-    //return BadRequest(new { success = false, errors });
 
     return View(form);
   }
