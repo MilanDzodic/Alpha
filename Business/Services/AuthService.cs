@@ -13,7 +13,7 @@ public interface IAuthService
   Task<AuthResult> SignUpAsync(MemberSignUpForm signupForm);
 }
 
-public class AuthService(SignInManager<MemberEntity> signInManager, IMemberService memberService) : IAuthService, IAuthService
+public class AuthService(SignInManager<MemberEntity> signInManager, IMemberService memberService) : IAuthService
 {
   private readonly SignInManager<MemberEntity> _signInManager = signInManager;
   private readonly IMemberService _memberService = memberService;

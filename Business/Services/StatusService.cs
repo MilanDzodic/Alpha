@@ -6,12 +6,12 @@ namespace Business.Services;
 
 public interface IStatusService
 {
-  Task<StatusResult<Status>> GetStatusByIdAsync(int id);
+  Task<StatusResult<Status>> GetStatusByIdAsync(string id);
   Task<StatusResult<Status>> GetStatusByNameAsync(string statusName);
   Task<StatusResult<IEnumerable<Status>>> GetStatusesAsync();
 }
 
-public class StatusService(IStatusRepository statusRepository) : IStatusService, IStatusService
+public class StatusService(IStatusRepository statusRepository) : IStatusService
 {
   private readonly IStatusRepository _statusRepository = statusRepository;
 
